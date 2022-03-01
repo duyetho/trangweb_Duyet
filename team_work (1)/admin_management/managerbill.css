@@ -1,0 +1,64 @@
+.content-statistical {
+	display: flex;
+	justify-content: space-around;
+}
+
+/* -------------------------------- */
+
+body {
+	font-family: "Lato", sans-serif;
+}
+
+.menu {
+	size: 5px;
+}
+
+.sidenav {
+	height: 100%;
+	width: 280px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: rgb(61, 137, 209);
+	overflow-x: hidden;
+	padding-top: 20px;
+}
+
+.sidenav a {
+	padding: 6px 6px 6px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #ddd4d4;
+	display: block;
+}
+
+.sidenav a:hover {
+	color: #f1f1f1;
+}
+
+.main {
+	margin-left: 290px;
+}
+
+@media screen and (max-height: 450px) {
+	.sidenav {
+		padding-top: 15px;
+	}
+	.sidenav a {
+		font-size: 18px;
+	}
+}
+
+.menusmall {
+	padding-left: 50px;
+}
+
+#menu-vertical a {
+	font-size: 20px;
+}
+
+/* ------------------------------------------------------ */
+
+/* Quản lý bill --------------------------------------------*/
+

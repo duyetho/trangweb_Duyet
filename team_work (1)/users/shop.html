@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping</title>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="./footer.css">
+    <link rel="stylesheet" href="./user.css">
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <header>
+                <div class="top-nav">
+                    <nav class="top-nav-container">
+                        <ul class="top-nav-left">
+                            <li class="menu-nav"><i class="fas fa-globe"></i> ENGLISH (INTL)</li>
+                            <li class="menu-nav"><i class="far fa-question-circle"></i> Can we help you?</li>
+                            <li class="menu-nav">Sustainability</li>
+                        </ul>
+                        <ul class="top-nav-right">
+                            <li class="menu-nav">
+                                <i class="far fa-user " id="showLogin" onclick="showLogin() "></i>
+                                <div class="account" id="LoginandRegister ">
+                                    <div class="hero">
+                                        <div class="form-box">
+                                            <i class="fas fa-times " id="hideLogin" onclick="hideLogin() "></i>
+
+                                            <div class="button-box">
+                                                <div id="btn"></div>
+                                                <button type="button" class="toggle-btn" onclick="login()">Log
+                                                    In</button>
+                                                <button type="button" class="toggle-btn" onclick="register()">Register</button>
+                                            </div>
+                                            <div class="social-icons">
+                                                <img src="./img/fb.png" alt="">
+                                                <img src="./img/gp.png" alt="">
+                                                <img src="./img/tw.png" alt="">
+
+                                            </div>
+                                            <form id="login" action="" class="input-group">
+                                                <input type="text" class="input-field" id="user" placeholder="User Id" required>
+                                                <input type="password" name="password" class="input-field" id="password" placeholder="Enter Password" required>
+                                                <span id="eyesHide"><i class="fas fa-eye" id="eyes" onclick="showHidden()" title="show password"></i></span>
+                                                <!-- <span id="eyesHide"><img
+                                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0qw_TMOwxDkO7-Qo0sXNjK3At__d7aN41oA&usqp=CAU"
+                                                        alt=""
+                                                        width="20px" onclick="showHidden()"></span> -->
+                                                <input type="checkbox" class="check-box"><span id="noteLogin">Remember
+                                                    Password</span>
+                                                <button type="button" class="submit-btn" onclick="getInfo()">Log In</button>
+
+                                            </form>
+                                            <form id="register" action="" class="input-group">
+                                                <input type="text" class="input-field" id="userres" placeholder="User Id" required>
+                                                <input type="email" class="input-field" id="email" placeholder="Email Id" required>
+
+                                                <input type="password" class="input-field" id="passwordres" placeholder="Enter Password" required>
+                                                <span id="eyesHided"><i class="fas fa-eye" id="eyesRes" onclick="eyesRes()" title="show password"></i></span>
+
+                                                <!-- <span id="eyesHide"><img
+                                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0qw_TMOwxDkO7-Qo0sXNjK3At__d7aN41oA&usqp=CAU"
+                                                        alt=""
+                                                        width="20px" onclick="showHidden()"></span> -->
+                                                <input type="checkbox" class="check-box"><span id="noteLogin">I agree to
+                                                    the terms & conditions</span>
+                                                <button type="button" class="submit-btn" onclick="regiter()">Register</button>
+                                            </form>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </li>
+                            <li class="menu-nav "><i class="fas fa-shopping-bag " onclick="showCartping()"></i><span class="badge rounded-pill badge-notification bg-dark " id="notification">0</span>
+                                <div id="showCart" class="container">
+                                    <!-- <i class="fas fa-times " onclick="hideCartping()() "></i> -->
+                                    <H1 id="divcart-content">Giỏ hàng</H1>
+                                    <hr>
+                                    <table class="table" id="cartping">
+
+                                    </table>
+                                    <table>
+                                        <tr>
+                                            <td><label for="">Total</label><input class="ml-5" type="text" id="alltotal"> </td>
+
+
+                                        </tr>
+                                    </table>
+                                    <br><br>
+
+                                    <!-- <button class="btn bg-danger" onclick="backHome()"> Tiếp tục xem
+                                            giỏ
+                                            hàng</button> -->
+                                    <button class="btn bg-danger" onclick="moveiforcustomer()">Thanh tóan</button>
+                                </div>
+                            </li>
+                            <li class="menu-nav "><i class="fas fa-map-marker-alt " onclick="showMap()"></i>
+                                <div class="container-local" id="showLocal">
+                                    <i class="fas fa-times " onclick="hideMap() "></i>
+                                    <div class="location">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15337.17302058118!2d108.24962609999999!3d16.05026505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1640669908831!5m2!1svi!2s" width="100%" height="880px" style="border:0;"
+                                            allowfullscreen="" loading="lazy"></iframe>
+
+                                    </div>
+                                    <div class="local-store">
+                                        <div class="local-header">
+                                            <div class="local-title">
+                                                <h1>LOCAL A STORE</h1>
+                                            </div>
+                                            <div class="local-search">
+                                                <ul class="menu-nav-search">
+                                                    <li class="menu-nav local-search-icon "><i class="fas fa-search "></i></li>
+                                                    <li class="menu-nav local-search-bar ">
+                                                        <from>
+                                                            <input type="text" class="search-field" id="search " name="search " style="width: 460px; " placeholder="Search ">
+                                                        </from>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <button type="button" class="search-btn"><i class="fas fa-map-marker-alt " style="padding-right: 5px;"></i>Search around me</button>
+                                            <!-- <h3>Search</h3> -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <hr style="width:100% ">
+                <div class="main-menu ">
+                    <!-- <nav class="logo ">
+                    <a href="# ">
+                        <img src="./img/logo.png " alt="Diamond " height="70px " style="border-radius:50%; ">
+                    </a>
+                </nav> -->
+                    <nav class="main-nav-container ">
+                        <ul class="logo ">
+                            <li class="menu-nav ">
+                                <a href="header.html">
+                                    <img src="./img/logo.png" alt="Diamond " height="70px " style="border-radius:50%; ">
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="main-nav-left ">
+                            <li class="menu-nav ">
+                                <a href="# ">
+                                    <div class="dropdown ">
+                                        <a class="dropbtn ">TRANG CHỦ</a>
+                                        <div class="dropdown-content ">
+                                            <a href="# ">Loại 1</a>
+                                            <a href="# ">Loại 2</a>
+                                            <a href="# ">Loại 3</a>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="menu-nav "><a href="# ">VỀ CHÚNG TÔI</a></li>
+                            <li class="menu-nav "><a href="# ">LIÊN HỆ</a></li>
+                            <li class="menu-nav "><a href="# ">CÁC CHỨC NĂNG KHÁC</a></li>
+
+                        </ul>
+                        <ul class="main-nav-right menu-search">
+                            <li class="menu-nav ">
+                                <from>
+                                    <input type="text " class="search-field " id="search " name="search " style="width: 300px;" placeholder="Search">
+                                </from>
+                            </li>
+
+                            <li class="menu-nav "><i class="fas fa-search "></i></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+        </div>
+
+        <!-- Cartping -->
+        <div class="container" id="main">
+
+
+            <div class="griddd container-fluid " id="griddd">
+                <div id="mainnav">
+                    <ul>
+                        <li class="thefirst">
+                            <a href="#">Dây chuyền</a>
+                            <ul class="sub-menu">
+                                <li><a href="#" onclick="showdetail('daychuyen','vang')">Dây chuyền vàng</a></li>
+                                <li><a href="#" onclick="showdetail('daychuyen','bac')">Dây chuyền bạc</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Vòng tay</a>
+                            <ul class="sub-menu">
+                                <li><a href="#" onclick="showdetail('vongtay','vang')">Vòng tay vàng</a></li>
+                                <li><a href="#" onclick="showdetail('vongtay','bac')">Vòng tay bạc</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Nhẫn</a>
+                            <ul class="sub-menu">
+                                <li><a href="#" onclick="showdetail('nhan','vang')">Nhẫn vàng</a></li>
+                                <li><a href="#" onclick="showdetail('nhan','bac')">Nhẫn bạc</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Bông tai</a>
+                            <ul class="sub-menu">
+                                <li><a href="#" onclick="showdetail('bongtai','vang')">Bông tai vàng</a></li>
+                                <li><a href="#" onclick="showdetail('bongtai','bac')">Bông tai bạc</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Đồng hồ</a>
+                            <ul class="sub-menu">
+                                <li><a href="#" onclick="showdetail('dongho','vang')">Đồng hồ vàng</a></li>
+                                <li><a href="#" onclick="showdetail('dongho','bac')">Đồng hồ bạc</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div id="products">
+
+                    <div class="container" style="width:1600px">
+                        <!-- <button onclick="carts()" data-target="#exampleModal" class="btnbg-outline-success my-2 my-sm-0
+                        check-input" type="button">
+                        <i class="bi bi-cart-check" style="color:
+                            yellow;font-size: 40px;"></i>
+                        </button> -->
+                        <div id="product" style="width:1000px">
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="chung" class="container">
+            <!-- Thông tin chi tiết of products -->
+            <div id="Product_details">
+                <div id="viewww">
+                    <div id="anha">
+                    </div>
+
+                    <div>
+                        <div id="catNam">
+                        </div>
+
+                        <div id="catPrice">
+                        </div>
+
+                        <div>
+                            <p style="font-size: 25px;">Còn hàng</p>
+                            <h6 class="detail">
+                                <p id="sale">Ưu đãi</p>
+                                <p> Tặng Ecode 1 triệu cho hóa đơn Trang Sức Vàng từ 8 - 40 triệu <a href=""> Xem chi tiết</a></p>
+                                <p>Tặng Lịch PNJ 2022 cho hóa đơn Trang sức Vàng/Platinum từ 3 triệu. <a href=""> Xem chi tiết</a></p>
+                                <p>Thanh toán <a href=""> VNPAY-QR</a> nhận thêm ưu đãi</p>
+                            </h6>
+                        </div>
+
+                        <div id="button"></div>
+
+                        <div id="buyShopee">
+                            <div id="buy"> </div>
+                            <div id="buyShoppe"></div>
+                        </div>
+                        <br>
+
+                        <div id="LuuY">
+                            <p>Do ảnh hưởng dịch Covid, thời gian giao hàng từ 3-10 ngày</p>
+                            <p> Giá sản phẩm thay đổi tuỳ trọng lượng vàng và đá</p>
+                            <p> Đổi sản phẩm trong 48h tại hệ thống cửa hàng PNJ</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Comment -->
+                <div id="top">
+                    <textarea id="comment" rows="8" placeholder="Chia sẻ cảm nghĩ của bạn..."></textarea>
+                    <button onclick="add()">Bình luận</button>
+                    <!-- <button onclick="getdata_comment()"></button>
+                    <button onclick="delete_comment()"></button> -->
+
+                </div>
+                <br>
+                <br>
+                <div id="list_comment">
+
+                </div>
+            </div>
+
+            <!-- sản phẩm liên quan -->
+            <br>
+            <br>
+            <h2>Sản phẩm liên quan</h2>
+            <div id="banchays">
+                <div id="banchay">
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="paya">
+
+            <h4 id="texth">THÔNG TIN KHÁCH HÀNG</h4>
+            <div class="radio">
+                <div id="gtinh"><input type="radio" name="gt" value="nam"> Nam</div>
+                <div id="gtinh"><input type="radio" name="gt" value="nu"> Nữ</div>
+            </div>
+            <br>
+            <form class="text">
+                <div class="text1">
+                    <input id="name" style="width:291px;" type="text" placeholder="Họ tên (bắt buộc)">
+                    <input id="emailCus" style="width:291px;" type="text" name="emailCus" placeholder="Email">
+                </div>
+                <div class="text2">
+                    <input id="phone" style="width:291px;" type="text" name="phone" placeholder="SĐT (bắt buộc)">
+                    <input id="date" style="width:291px;" type="text" name="date" placeholder="Ngày sinh(dd-mm-yyyy">
+                </div>
+
+            </form>
+            <br>
+            <h4>HÌNH THỨC NHẬN HÀNG</h4>
+            <div class="hinhthucTT">
+                <div id="shipping">
+                    <b>Giao hàng tận nơi</b><br> (Miễn phí ship toàn quốc)
+                </div>
+                <form class="address">
+                    <div class="address1">
+                        <input id="province" style="width:291px;" type="text" name="province" placeholder="Nhập tỉnh thành">
+                        <input id="distric" style="width:291px;" type="text" name="distric" placeholder="Nhập quận/huyện">
+                    </div>
+                    <div class="address2">
+                        <input id="commune" style="width:291px;" type="text" name="commune" placeholder="Nhập phường/xã">
+                        <input id="apartmentNumber" style="width:291px;" type="text" name="distric" placeholder="Nhập đường/số nhà">
+                    </div>
+                    <br>
+                    <div>
+                        <input id="note" style="width:591px;" type="text" name="province" placeholder="Ghi chú khác">
+                    </div>
+                </form>
+                <div>
+                    <button type="submit" id="submit" onclick="payment()">Đặt hàng</button>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="container" id="detaibill">
+        </div>
+        <div class="footer">
+            <hr style="width:100%;">
+            <div class="flex">
+                <div class="flex_text">
+                    <h6>VỀ PNJ</h6>
+                    <p>
+                        Thông tin về PNJ <br> Quá trình phát triển<br> Hệ thống cửa hàng<br> Thành tựu<br> Tuyển dụng<br> Câu hỏi thường gặp</p>
+                </div>
+                <div class="flex_text">
+                    <h6>HỖ TRỢ MUA HÀNG</h6>
+                    <p>
+                        HỖ TRỢ MUA HÀNG <br> Hướng dẫn mua hàng <br> Mua hàng trả góp <br> Phương thức vận chuyển <br> Chính sách bảo hành thu đổi <br> Hướng dẫn sử dụng trang sức <br> Tích luỹ điểm khách hàng thân thiết (Gold)</p>
+                </div>
+                <div class="flex_text">
+                    <h6>CẨM NANG SỬ DỤNG</h6>
+                    <p>
+                        Thông tin về PNJ <br> Quá trình phát triển<br> Hệ thống cửa hàng<br> Thành tựu<br> Tuyển dụng<br> Câu hỏi thường gặp</p>
+                </div>
+                <div class="flex_text">
+                    <h6>SẢN PHẨM</h6>
+                    <p>
+                        Thông tin về PNJ <br> Quá trình phát triển<br> Hệ thống cửa hàng<br> Thành tựu<br> Tuyển dụng<br> Câu hỏi thường gặp</p>
+                </div>
+                <div class="flex_text">
+                    <h6>DỊCH VỤ</h6>
+                    <p>
+                        Xuất khẩu <br> Quá trình phát triển<br> Hệ thống cửa hàng<br> Thành tựu<br> Tuyển dụng<br> Câu hỏi thường gặp</p>
+                </div>
+            </div>
+            <hr style="width: 100%;">
+            <div class="inform">
+                <div class="inform_text">
+                    <h6>© 2017 Công Ty Cổ Phần Vàng Bạc Đá <br>Quý Phú Nhuận</h6>
+                    <p>170E Phan Đăng Lưu, P. 3, Q. Phú Nhuận,<br> TP. Hồ Chí Minh
+                        <br> ĐT: 028 39951703 - Fax: 028 3995 1702
+                        <br> Email: shop@pnj.com.vn <br> Ngành, nghề kinh doanh: Tải về</p>
+                </div>
+                <div class="inform_text1">
+                    <h6>Quan tâm Zalo OA PNJ</h6>
+                    <p>Nhận các thông tin khuyến mãi hấp dẫn</p>
+                    <div class="app"><img class="app__icon" src="https://sp.zalo.me/static/follow/images/logo_white_s_2x.png" alt=""><span class="app__label">Quan tâm</span></div>
+                </div>
+                <div class="thanh_toan">
+                    <p>Phương thức thanh toán</p>
+                    <p class="PTTT">
+                        <img src="image/1.JPG" style="width: 60px;">
+                        <img src="image/2.JPG" style="width: 60px;">
+                        <img src="image/3.JPG" style="width: 60px;">
+                    </p>
+                    <p class="PTTT2">
+                        <img src="image/4.JPG" style="width: 60px;">
+                        <img src="image/5.JPG" style="width: 60px;">
+                        <img src="image/7.JPG" style="width: 60px;">
+                    </p>
+
+                </div>
+                <div class="connect">
+                    <p>Kết nối với chúng tôi</p>
+                    <div class="icon">
+                        <a href="https://www.facebook.com/PNJ.COM.VN"><i class="icon1 fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/accounts/login/"><i class="icon2 fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/user/PhuNhuanJewelry"><i class="icon3 fab fa-youtube"></i></a>
+                        <a href="shop@pnj.com.vn"><i class="icon4 fas fa-envelope-square"></i></a>
+                    </div>
+                    <br>
+                    <p>Chứng nhận</p>
+                    <div>
+                        <img src="https://cdn.pnj.io/images/image-update/op-da-thong-bao-bo-cong-thuong-183x60.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr style="width:100% ">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("user_5KiMCYtNrqLlFbsDxXynH");
+        })();
+    </script>
+    <script src="login.js"></script>
+    <script src="header.js"></script>
+    <!-- <script src="sanpham.js"></script> -->
+    <script src="user.js"></script>
+
+
+
+</body>
+
+</html>

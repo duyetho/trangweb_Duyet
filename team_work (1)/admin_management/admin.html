@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script
+			src="https://kit.fontawesome.com/522874b971.js"
+			crossorigin="anonymous"
+		></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<link rel="stylesheet" href="admin.css" />
+		<title>Document</title>
+	</head>
+
+	<body>
+		<div class="sidenav menu" id="menuadmin">
+			<div class="row">
+				<div class="row-2">
+					<div class="col">
+						<a href="">
+							<i class="fas fa-grin"> ADMIN</i>
+						</a>
+					</div>
+					<hr />
+				</div>
+				<div id="menu-vertical">
+					<div>
+						<a href="admin.html">
+							<i class="fas fa-hotel"> TRANG CHỦ</i>
+						</a>
+					</div>
+					<br />
+					<div class="menusmall">
+						<p>QUẢN LÝ</p>
+					</div>
+					<br />
+					<div>
+						<a href="cos_admin.html">
+							<i class="fas fa-city"> Quản lý khách hàng</i>
+						</a>
+						<br />
+						<a href="managerproduct.html">
+							<i class="fa fa-tachometer-alt">
+								Quản lý sản phẩm</i
+							>
+						</a>
+						<br />
+						<a href="managerbill.html">
+							<i class="fa fa-tachometer-alt">
+								Quản số lượng đơn hàng</i
+							>
+						</a>
+						<br />
+					</div>
+				</div>
+			</div>
+			<hr />
+		</div>
+		<br />
+		<!-- ----------------------------------------------------- -->
+		<div class="content-statistical main" id="adminright">
+			<div class="small-content">
+				<p>SỐ LƯỢNG KHÁCH HÀNG</p>
+				<div class="quantily">
+					<p id="qty1"></p>
+					<i class="fas fa-calendar-day" id="icon"></i>
+				</div>
+			</div>
+
+			<div class="small-content">
+				<p>SỐ LƯỢNG SẢN PHẨM</p>
+				<div class="quantily">
+					<p id="qty2"></p>
+					<i class="fas fa-calendar-day" id="icon"></i>
+				</div>
+			</div>
+
+			<div class="small-content">
+				<p>SỐ LƯỢNG ĐƠN HÀNG</p>
+				<div class="quantily">
+					<p id="qty3"></p>
+					<i class="fas fa-calendar-day" id="icon"></i>
+				</div>
+			</div>
+			<!-- <div class="small-content">
+				<p>SỐ LƯỢNG ĐƠN HÀNG</p>
+				<div class="quantily">
+					<p id="qty3"></p>
+					<i class="fas fa-calendar-day" id="icon"></i>
+				</div>
+			</div> -->
+		</div>
+		<!-- ------------------------------------------- -->
+	</body>
+    <script src="soluong.js"></script>
+</html>
